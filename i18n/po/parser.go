@@ -44,8 +44,9 @@ func parse(fileName string) *Message {
 		msg, _ := strconv.Unquote(firstArg.Value)
 
 		result = &Message{
-			FileLine: pos.String(),
+			FileLine: []string{pos.String()},
 			Value:    msg,
+			Id:       msg,
 		}
 
 		return true

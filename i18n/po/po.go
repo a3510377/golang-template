@@ -1,18 +1,24 @@
 package po
 
 import (
-	"fmt"
 	"os"
 	"path/filepath"
 )
 
-type Message struct {
-	FileLine string
-	Value    string
-}
+type (
+	Message struct {
+		FileLine []string
+		Value    string
+		Id       string
+	}
+	PoFile struct {
+		Messages map[string]*Message
+		Lang     string
+	}
+)
 
-func GeneratePo() {
-	var pos []Message
+func GeneratePo() *PoFile {
+	poFile := &PoFile{}
 
 	filepath.Walk(".", func(name string, info os.FileInfo, err error) error {
 		if err != nil || info.IsDir() || filepath.Ext(name) != ".go" {
@@ -20,11 +26,11 @@ func GeneratePo() {
 		}
 
 		if msg := parse(name); msg != nil {
-			pos = append(pos, *msg)
+			poFile.AddMessage(*msg)
 		}
 
 		return nil
 	})
 
-	fmt.Println(pos)
+	return poFile
 }
