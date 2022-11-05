@@ -17,10 +17,10 @@ type (
 	}
 )
 
-func GeneratePo() *PoFile {
+func GeneratePo(path string) *PoFile {
 	poFile := &PoFile{}
 
-	filepath.Walk(".", func(name string, info os.FileInfo, err error) error {
+	filepath.Walk(path, func(name string, info os.FileInfo, err error) error {
 		if err != nil || info.IsDir() || filepath.Ext(name) != ".go" {
 			return nil
 		}
