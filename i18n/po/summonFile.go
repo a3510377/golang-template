@@ -60,5 +60,5 @@ func format(value string, arg string) string {
 }
 
 func escape(value string) string {
-	return strings.ReplaceAll(strings.ReplaceAll(value, `"`, `\"`), "\n", "\\n")
+	return strings.ReplaceAll(strings.ReplaceAll(value, `"`, `""`), "\n", "\\n")
 }
