@@ -33,6 +33,7 @@ func (po *PoFile) AddMessage(msg ...Message) {
 func (po *PoFile) Write(w *os.File) {
 	contents := []string{
 		fmt.Sprintf(`"Language: %s"`, po.Lang),
+		"\n",
 	}
 
 	for _, msg := range po.Messages {
