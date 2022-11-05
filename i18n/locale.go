@@ -79,7 +79,7 @@ func findMatchLocale(locale string) string {
 	return ""
 }
 
-func setLocale(locale string) {
+func setLocale(locale string) string {
 	defer utils.Recover()
 
 	poFile, err := contents.ReadFile("data/" + locale + ".po")
@@ -89,4 +89,6 @@ func setLocale(locale string) {
 
 	po = new(gotext.Po)
 	po.Parse(poFile)
+
+	return locale
 }
