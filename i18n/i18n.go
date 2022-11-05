@@ -17,5 +17,6 @@ func Init(configLocale string) string {
 }
 
 func Tr(msg string, args ...any) string {
-	return po.Get(msg, args...)
+	// return po.Get(msg, args...)
+	return msg
 }
