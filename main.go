@@ -11,5 +11,5 @@ func main() {
 
 	i18n.Tr("test")
 	i18n.Tr("test")
-	i18n.Tr("test")
+	i18n.Tr("test\ntest")
 }
