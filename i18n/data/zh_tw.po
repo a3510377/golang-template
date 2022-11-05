@@ -1,4 +1,7 @@
+"Language: "
 
-#: version/version.go:53
+#: main.go:12:2
+#: main.go:13:2
+#: main.go:14:2
 msgid "test"
-msgstr "awa"
+msgstr "test"

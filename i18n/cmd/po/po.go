@@ -17,8 +17,9 @@ type (
 	}
 )
 
-func GeneratePo(path string) *PoFile {
+func GeneratePo(path string, lang string) *PoFile {
 	poFile := &PoFile{}
+	poFile.Lang = lang
 
 	filepath.Walk(path, func(name string, info os.FileInfo, err error) error {
 		if err != nil || info.IsDir() || filepath.Ext(name) != ".go" {
