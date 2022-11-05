@@ -26,7 +26,7 @@ func GeneratePo() *PoFile {
 		}
 
 		if msg := parse(name); msg != nil {
-			poFile.AddMessage(*msg)
+			poFile.AddMessage(msg...)
 		}
 
 		return nil

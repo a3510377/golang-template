@@ -1,4 +1,6 @@
 "Language: "
 #: main.go:19:2
+#: main.go:20:2
+#: main.go:21:2
 msgid "test"
 msgstr "test"

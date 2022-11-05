@@ -17,4 +17,6 @@ func main() {
 	po.Write(f)
 
 	i18n.Tr("test")
+	i18n.Tr("test")
+	i18n.Tr("test")
 }

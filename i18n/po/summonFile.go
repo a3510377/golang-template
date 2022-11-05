@@ -16,17 +16,10 @@ func (po *PoFile) Add(id, value string, fileLine []string) {
 	if po.Messages[id] == nil {
 		po.Messages[id] = &Message{Id: id, Value: value, FileLine: fileLine}
 	} else {
-		repeat := false
-
-		for _, m := range po.Messages[id].FileLine {
-			if utils.Contains(fileLine, m) {
-				repeat = true
-				break
+		for _, m := range fileLine {
+			if !utils.Contains(po.Messages[id].FileLine, m) {
+				po.Messages[id].FileLine = append(po.Messages[id].FileLine, m)
 			}
-		}
-
-		if !repeat {
-			po.Messages[id].FileLine = append(po.Messages[id].FileLine, fileLine...)
 		}
 	}
 }

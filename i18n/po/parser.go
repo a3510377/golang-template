@@ -7,11 +7,11 @@ import (
 	"strconv"
 )
 
-func parse(fileName string) *Message {
+func parse(fileName string) []Message {
 	fSet := token.NewFileSet()
 	node, _ := parser.ParseFile(fSet, fileName, nil, parser.AllErrors)
 
-	var result *Message
+	var result []Message
 
 	ast.Inspect(node, func(node ast.Node) bool {
 		funcCall, ok := node.(*ast.CallExpr)
@@ -43,11 +43,11 @@ func parse(fileName string) *Message {
 
 		msg, _ := strconv.Unquote(firstArg.Value)
 
-		result = &Message{
+		result = append(result, Message{
 			FileLine: []string{pos.String()},
 			Value:    msg,
 			Id:       msg,
-		}
+		})
 
 		return true
 	})
