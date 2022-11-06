@@ -47,3 +47,53 @@ func GetNameLevel(level string) int {
 
 	return -1
 }
+
+type BaseRecord struct {
+	level     int
+	disabled  bool
+	formatter string
+}
+
+func (r *BaseRecord) IsEnabledFor(level int) bool {
+	if r.disabled {
+		return false
+	}
+
+	return (r.level | level) == r.level
+}
+
+func (r *BaseRecord) GetLevel() int {
+	return r.level
+}
+
+func (r *BaseRecord) SetLevel(level int) int {
+	r.level = level
+
+	return r.GetLevel()
+}
+
+func (r *BaseRecord) AddLevel(level int) int {
+	r.level |= level
+
+	return r.GetLevel()
+}
+
+func (r *BaseRecord) RemoveLevel(level int) int {
+	r.level &^= level
+
+	return r.GetLevel()
+}
+
+func (r *BaseRecord) SetDisabled(disabled bool) {
+	r.disabled = disabled
+}
+
+func (r *BaseRecord) GetFormatter() string {
+	return r.formatter
+}
+
+func (r *BaseRecord) SetFormatter(fmt string) {
+	r.formatter = fmt
+}
+
+type LogRecord struct{}
