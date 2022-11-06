@@ -12,7 +12,7 @@ const (
 	CRITICAL = FATAL
 )
 
-var LevelToName map[int]string = map[int]string{
+var LevelToName = map[int]string{
 	CRITICAL: "CRITICAL",
 	ERROR:    "ERROR",
 	WARN:     "WARN",
@@ -21,7 +21,7 @@ var LevelToName map[int]string = map[int]string{
 	NOTSET:   "NOTSET",
 }
 
-var NameToLevel map[string]int = map[string]int{
+var NameToLevel = map[string]int{
 	"CRITICAL": CRITICAL,
 	"FATAL":    FATAL,
 	"ERROR":    ERROR,
@@ -30,6 +30,15 @@ var NameToLevel map[string]int = map[string]int{
 	"INFO":     INFO,
 	"DEBUG":    DEBUG,
 	"NOTSET":   NOTSET,
+}
+
+var Styles = map[string]struct {
+	style Style
+	fmt   string
+}{
+	"%": {PercentStyle{}, "%(levelName)s:%(name)s:%(message)s"},
+	"{": {StrFormatStyle{}, "{levelName}:{name}:{message}"},
+	"$": {StringTemplateStyle{}, "${levelName}:${name}:${message}"},
 }
 
 func GetLevelName(level int) string {
@@ -95,5 +104,3 @@ func (r *BaseRecord) GetFormatter() string {
 func (r *BaseRecord) SetFormatter(fmt string) {
 	r.formatter = fmt
 }
-
-type LogRecord struct{}
