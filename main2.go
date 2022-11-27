@@ -46,29 +46,29 @@ func FormatString(sr string, args map[string]string) string {
 	result := ""
 	str := String(sr)
 	isFormat := false
-	formatData := ""
-	// isEscape := false
+	// formatData := ""
 
 	for i := 0; i < len(str.StringList()); i++ {
 		s := str.Index(i)
-		fmt.Println(i, s, isFormat)
 
-		if str.Slice(i, len(leftDelim)+i) == leftDelim && !isFormat {
+		if s == escape {
+			i += len(escape) + len(leftDelim)
+			str.Slice(i, len(str))
+			continue
+		}
+		if str.Slice(i, i+len(leftDelim)) == leftDelim {
 			i += len(leftDelim) - 1
 			isFormat = true
 			continue
 		}
-		if isFormat {
-			if str.Slice(i, len(rightDelim)+i) == rightDelim {
-				i += len(rightDelim) - 1
-				isFormat = false
-				continue
-			}
-			formatData += s.String()
-		} else {
-			formatData = ""
+		if str.Slice(i, i+len(rightDelim)) == rightDelim {
+			i += len(rightDelim) - 1
+			isFormat = false
+			continue
 		}
-		fmt.Println(formatData)
+		if isFormat {
+			fmt.Println("formatData", s)
+		}
 	}
 
 	return result
