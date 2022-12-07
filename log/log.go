@@ -1,16 +1,42 @@
 package log
 
-import (
-	"fmt"
-	"math"
-)
+type Logger struct {
+	BaseRecord
+}
 
-func Test() {
-	const MAX = 6
-	Format := fmt.Sprintf("%%d: %%#0%db %%d\n", MAX)
+func (r *Logger) Debug(msg string, args ...any) {
+	r.log(DEBUG, msg, args...)
+}
 
-	for i := 0; i < MAX; i++ {
-		d := (int)(math.Pow(2, float64(i)))
-		fmt.Printf(Format, i, d, d)
+func (r *Logger) Info(msg string, args ...any) {
+	r.log(INFO, msg, args...)
+}
+
+func (r *Logger) Warn(msg string, args ...any) {
+	r.log(WARN, msg, args...)
+}
+
+func (r *Logger) Warning(msg string, args ...any) {
+	r.log(WARNING, msg, args...)
+}
+
+func (r *Logger) Error(msg string, args ...any) {
+	r.log(ERROR, msg, args...)
+}
+
+func (r *Logger) Critical(msg string, args ...any) {
+	r.log(CRITICAL, msg, args...)
+}
+
+func (r *Logger) Fatal(msg string, args ...any) {
+	r.log(FATAL, msg, args...)
+}
+
+func (r *Logger) Log(level int, msg string, args ...any) {
+	if r.IsEnabledFor(level) {
+		r.log(level, msg, args...)
 	}
+}
+
+func (r *Logger) log(level int, msg string, args ...any) {
 }

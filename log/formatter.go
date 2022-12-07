@@ -1,23 +1,14 @@
 package log
 
-import (
-	"text/template"
-)
+// func NewFormatter() *Formatter {
+// 	f := &Formatter{}
 
-type Formatter struct {
-	default_time_format string
-	default_msec_format string
-}
+// 	f.default_msec_format = "%Y-%m-%d %H:%M:%S"
+// 	f.default_time_format = "%s,%03d"
 
-func NewFormatter() *Formatter {
-	f := &Formatter{}
+// 	// regexp.Compile("")
+// 	t1 := template.New("")
+// 	t1.Parse("")
 
-	f.default_msec_format = "%Y-%m-%d %H:%M:%S"
-	f.default_time_format = "%s,%03d"
-
-	// regexp.Compile("")
-	t1 := template.New("")
-	t1.Parse("")
-
-	return f
-}
+// 	return f
+// }

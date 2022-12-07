@@ -33,7 +33,7 @@ var NameToLevel = map[string]int{
 }
 
 var Styles = map[string]struct {
-	style Style
+	style any
 	fmt   string
 }{
 	"%": {PercentStyle{}, "%(levelName)s:%(name)s:%(message)s"},
