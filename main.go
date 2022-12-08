@@ -8,10 +8,10 @@ import (
 )
 
 func main() {
-	test := utils.New("0", "1")
+	test := utils.New("0", "1", "2", "3", "4", "5", "6", "7", "8", "9")
 	fmt.Println(test)
 
-	fmt.Println(test.Reverse())
+	test.Insert(0, "awa", "awa2")
 	fmt.Println(test)
 	t := log.Template{
 		StartDelimiter: "{",
