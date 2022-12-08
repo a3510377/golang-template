@@ -16,6 +16,7 @@ func (l List[T]) Pop() T                       { return l.Remove(l.Count() - 1) 
 func (l List[T]) Clone() List[T]               { return append(List[T]{}, l...) }
 func (l List[T]) Slice(start, end int) List[T] { return l[start:end] }
 func (l *List[T]) Append(i int, v ...T)        { *l = append(*l, v...) }
+func (l *List[T]) Clear()                      { *l = []T{} }
 
 func (l List[T]) Reverse() List[T] {
 	s := l.Clone()
