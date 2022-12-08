@@ -3,11 +3,13 @@ package po
 import (
 	"os"
 	"path/filepath"
+
+	. "test/utils"
 )
 
 type (
 	Message struct {
-		FileLine []string
+		FileLine List[string]
 		Value    string
 		Id       string
 	}

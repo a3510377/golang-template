@@ -4,8 +4,6 @@ import (
 	"fmt"
 	"os"
 	"strings"
-
-	"test/utils"
 )
 
 func (po *PoFile) Add(id, value string, fileLine []string) {
@@ -17,7 +15,7 @@ func (po *PoFile) Add(id, value string, fileLine []string) {
 		po.Messages[id] = &Message{Id: id, Value: value, FileLine: fileLine}
 	} else {
 		for _, m := range fileLine {
-			if !utils.Contains(po.Messages[id].FileLine, m) {
+			if !po.Messages[id].FileLine.Contains(m) {
 				po.Messages[id].FileLine = append(po.Messages[id].FileLine, m)
 			}
 		}
