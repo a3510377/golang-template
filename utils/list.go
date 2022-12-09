@@ -18,6 +18,12 @@ func (l List[T]) Slice(start, end int) List[T] { return l[start:end] }
 func (l *List[T]) Append(i int, v ...T)        { *l = append(*l, v...) }
 func (l *List[T]) Clear()                      { *l = []T{} }
 
+func (l List[T]) Sort(callable func(l List[T], i, j int) bool) {
+	sort.SliceStable(l, func(i, j int) bool {
+		return callable(l, i, j)
+	})
+}
+
 func (l List[T]) Reverse() List[T] {
 	s := l.Clone()
 	sort.SliceStable(s, func(i, j int) bool { return true })
